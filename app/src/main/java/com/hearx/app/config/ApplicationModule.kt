@@ -21,7 +21,7 @@ class ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideTestViewModel() = TestViewModel()
+    fun provideTestViewModel() = TestViewModel(provideTestRepository())
 
     @Singleton
     @Provides

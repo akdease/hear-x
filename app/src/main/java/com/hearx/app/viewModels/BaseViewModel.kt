@@ -9,11 +9,11 @@ open class BaseViewModel : ViewModel() {
     val finishActivity = MutableLiveData<Boolean>()
 
     fun navigateToClass(theClass: Class<*>) {
-        navigateToClass.value = theClass
+        navigateToClass.postValue(theClass)
     }
 
     fun finishActivity() {
-        finishActivity.value = true
+        finishActivity.postValue(true)
     }
 
 }

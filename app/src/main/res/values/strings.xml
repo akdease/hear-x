@@ -5,4 +5,10 @@
     <string name="submit_test">Submit Test</string>
     <string name="view_results">View Results</string>
     <string name="round">Round %1$s</string>
+    <string name="noise">Noise</string>
+    <string name="digit_1">Digit 1</string>
+    <string name="digit_2">Digit 2</string>
+    <string name="digit_3">Digit 3</string>
+    <string name="results">Results</string>
+    <string name="done">Done</string>
 </resources>

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HearX"
         tools:targetApi="31"
-        android:name=".config.MyApplication">
+        android:name=".config.HearxApplication">
 
         <activity
             android:name=".activities.MainActivity"

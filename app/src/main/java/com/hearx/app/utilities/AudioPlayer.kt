@@ -6,7 +6,7 @@ import android.media.MediaPlayer
 
 class AudioPlayer {
 
-    private val mediaPlayer = MediaPlayer()
+    private var mediaPlayer = MediaPlayer()
     fun playAudio(fileName: String, context: Context) {
         stopAudio()
 
@@ -20,15 +20,13 @@ class AudioPlayer {
 
         mediaPlayer.prepare()
         mediaPlayer.setVolume(1f, 1f)
-        mediaPlayer.isLooping = true
+        mediaPlayer.isLooping = false
         mediaPlayer.start()
     }
 
     fun stopAudio() {
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.stop()
-            mediaPlayer.release()
-            mediaPlayer.reset()
-        }
+        mediaPlayer.stop()
+        mediaPlayer.release()
+        mediaPlayer = MediaPlayer()
     }
 }

@@ -2,7 +2,7 @@ package com.hearx.app.config
 
 import android.app.Application
 
-class MyApplication : Application() {
+class HearxApplication : Application() {
     lateinit var applicationComponent: ApplicationComponent
 
     override fun onCreate() {
