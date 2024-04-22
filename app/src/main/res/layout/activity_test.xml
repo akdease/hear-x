@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="activity"
+            type="com.hearx.app.activities.TestActivity" />
+
+        <variable
+            name="viewmodel"
+            type="com.hearx.app.viewModels.TestViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activities.TestActivity">
+
+        <TextView
+            android:id="@+id/txtRound"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{activity.getFormattedRoundString()}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Round"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/txtRound"
+            app:layout_constraintBottom_toTopOf="@+id/btnExitTest"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnExitTest"/>
+
+        <Button
+            android:id="@+id/btnExitTest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/exit_test"
+            app:layout_constraintBottom_toTopOf="@+id/btnSubmitTest"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="@{() -> viewmodel.exitTest()}"/>
+
+        <Button
+            android:id="@+id/btnSubmitTest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_test"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="@{() -> viewmodel.submitTest()}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
