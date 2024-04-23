@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
 import com.hearx.app.R
+import com.hearx.app.activities.MainActivity
+import com.hearx.app.activities.TestActivity
 import com.hearx.app.database.ResultData
 import com.hearx.app.database.ResultsDatabase
 import com.hearx.app.utilities.AppConstants
@@ -49,7 +51,7 @@ class TestViewModel @Inject constructor(private val testRepository: TestReposito
 
     @MainThread
     fun exitTest() {
-        finishActivity()
+        (context as TestActivity).finish()
     }
 
     @MainThread

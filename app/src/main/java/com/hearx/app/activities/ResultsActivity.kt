@@ -27,7 +27,6 @@ class ResultsActivity : BaseActivity() {
         resultsViewModel.context = this
         resultsViewModel.getResults()
 
-        observeNavigationChanges(resultsViewModel, this, this)
         observeLocalChanges()
     }
 

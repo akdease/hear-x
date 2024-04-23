@@ -3,6 +3,7 @@ package com.hearx.app.viewModels
 import android.content.Context
 import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
+import com.hearx.app.activities.ResultsActivity
 import com.hearx.app.database.ResultData
 import com.hearx.app.database.ResultsDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -24,7 +25,7 @@ class ResultsViewModel : BaseViewModel() {
 
     @MainThread
     fun done() {
-        finishActivity()
+        (context as ResultsActivity).finish()
     }
 
 }

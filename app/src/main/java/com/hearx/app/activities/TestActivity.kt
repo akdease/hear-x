@@ -30,7 +30,6 @@ class TestActivity : BaseActivity() {
         binding.lifecycleOwner = this
         binding.viewmodel = testViewModel
 
-        observeNavigationChanges(testViewModel, this, this)
         observeLocalChanges()
     }
 
