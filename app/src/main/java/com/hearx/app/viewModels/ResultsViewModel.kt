@@ -1,6 +1,7 @@
 package com.hearx.app.viewModels
 
 import android.content.Context
+import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
 import com.hearx.app.database.ResultData
 import com.hearx.app.database.ResultsDatabase
@@ -11,6 +12,7 @@ import kotlinx.coroutines.launch
 class ResultsViewModel : BaseViewModel() {
     lateinit var context: Context
     val results = MutableLiveData<List<ResultData>>()
+    val isLoading = MutableLiveData<Boolean>()
     fun getResults() {
         val database = ResultsDatabase.getDatabase(context)
 
@@ -18,6 +20,11 @@ class ResultsViewModel : BaseViewModel() {
             val resultsList = database.resultsDao().getAllResults()
             results.postValue(resultsList)
         }
+    }
+
+    @MainThread
+    fun done() {
+        finishActivity()
     }
 
 }

@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="hearx_black">#323232</color>
+    <color name="hearx_light_blue">#80deea</color>
+    <color name="hearx_dark_blue">#2596be</color>
+    <color name="hearx_grey">#606b6b</color>
+    <color name="hearx_red">#Fd0639</color>
 </resources>

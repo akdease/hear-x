@@ -1,9 +1,40 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.HearX" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Base.Theme.HearX" parent="Theme.AppCompat">
+        <item name="android:background">@color/hearx_black</item>
     </style>
 
     <style name="Theme.HearX" parent="Base.Theme.HearX" />
+
+    <style name="Theme.HearX.Heading" parent="Base.Theme.HearX">
+        <item name="android:textColor">@color/hearx_light_blue</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="Theme.HearX.SubHeading" parent="Theme.HearX.Heading">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Theme.HearX.PrimaryText" parent="Base.Theme.HearX">
+        <item name="android:textColor">@color/hearx_light_blue</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Theme.HearX.SecondaryText" parent="Base.Theme.HearX">
+        <item name="android:textColor">@color/hearx_light_blue</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Theme.HearX.PrimaryButton" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:background">@drawable/button_primary_ripple_effect</item>
+        <item name="android:textColor">@color/hearx_black</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Theme.HearX.SecondaryButton" parent="TextAppearance.MaterialComponents.Button">
+        <item name="android:background">@drawable/button_secondary_ripple_effect</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 </resources>

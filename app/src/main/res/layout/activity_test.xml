@@ -4,110 +4,174 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
-        <variable
-            name="activity"
-            type="com.hearx.app.activities.TestActivity" />
-
+        <import type="android.view.View"/>
         <variable
             name="viewmodel"
             type="com.hearx.app.viewModels.TestViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".activities.TestActivity">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtRound"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{activity.getFormattedRoundString()}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Round" />
+            android:layout_height="match_parent"
+            android:paddingHorizontal="10dp"
+            android:visibility="@{viewmodel.isLoading ? View.GONE : View.VISIBLE}"
+            tools:context=".activities.TestActivity">
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:foregroundGravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/btnExitTest"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtRound">
+            <TextView
+                android:id="@+id/txtRound"
+                style="@style/Theme.HearX.Heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewmodel.currentRoundText}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Round" />
+
+            <TextView
+                android:id="@+id/txtDifficulty"
+                style="@style/Theme.HearX.SubHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewmodel.difficultyText}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtRound"
+                tools:text="Difficulty : 5" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:foregroundGravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/btnExitTest"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDifficulty">
+
+                <Button
+                    style="@style/Theme.HearX.PrimaryButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:onClick="@{() -> viewmodel.playNoise()}"
+                    android:text="@string/noise" />
+
+                <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:foregroundGravity="center">
+
+                        <Button
+                            style="@style/Theme.HearX.PrimaryButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="10dp"
+                            android:onClick="@{() -> viewmodel.digit1OnClick()}"
+                            android:text="@string/digit_1" />
+
+                        <Button
+                            style="@style/Theme.HearX.PrimaryButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{() -> viewmodel.digit2OnClick()}"
+                            android:text="@string/digit_2" />
+
+                        <Button
+                            style="@style/Theme.HearX.PrimaryButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:onClick="@{() -> viewmodel.digit3OnClick()}"
+                            android:text="@string/digit_3" />
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txt_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_answer"
+                app:errorEnabled="@{viewmodel.tripletError != null}"
+                app:layout_constraintBottom_toTopOf="@+id/btnExitTest"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <EditText
+                    android:id="@+id/txtInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:text="@={viewmodel.tripletAnswer}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:layout_width="match_parent"
+                android:id="@+id/btnExitTest"
+                style="@style/Theme.HearX.SecondaryButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/noise"
-                android:onClick="@{() -> viewmodel.playNoise()}"/>
+                android:layout_marginBottom="10dp"
+                android:onClick="@{() -> viewmodel.exitTest()}"
+                android:text="@string/exit_test"
+                app:layout_constraintBottom_toTopOf="@+id/btnSubmitTest"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnSubmitTest"
+                style="@style/Theme.HearX.PrimaryButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:stretchColumns="*">
+                android:layout_marginBottom="10dp"
+                android:onClick="@{() -> viewmodel.submitTest()}"
+                android:text="@string/submit_test"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-                <TableRow
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:foregroundGravity="center">
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/digit_1"
-                        android:onClick="@{() -> viewmodel.digit1()}"/>
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/digit_2"
-                        android:onClick="@{() -> viewmodel.digit2()}"/>
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/digit_3"
-                        android:onClick="@{() -> viewmodel.digit3()}"/>
-
-                </TableRow>
-
-            </TableLayout>
-
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtInput"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/btnExitTest"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="match_parent"
+            android:visibility="@{viewmodel.isLoading ? View.VISIBLE : View.GONE}"
+            tools:visibility="gone">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/loading"
+                android:textAlignment="center"
+                style="@style/Theme.HearX.PrimaryText"
+                android:layout_alignParentTop="true"/>
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/please_wait"
+                android:textAlignment="center"
+                style="@style/Theme.HearX.PrimaryText"
+                android:layout_alignParentBottom="true"/>
+        </RelativeLayout>
 
-        <Button
-            android:id="@+id/btnExitTest"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewmodel.finishActivity()}"
-            android:text="@string/exit_test"
-            app:layout_constraintBottom_toTopOf="@+id/btnSubmitTest"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/btnSubmitTest"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewmodel.submitTest()}"
-            android:text="@string/submit_test"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
 
 </layout>

@@ -29,4 +29,8 @@ class AudioPlayer {
         mediaPlayer.release()
         mediaPlayer = MediaPlayer()
     }
+
+    fun getMediaPlayer() : MediaPlayer {
+        return mediaPlayer
+    }
 }

@@ -9,7 +9,7 @@ import com.hearx.app.R
 import com.hearx.app.database.ResultData
 
 class ResultsAdapter(
-    val results: List<ResultData>
+    private val results: List<ResultData>
 ) : RecyclerView.Adapter<ResultsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {

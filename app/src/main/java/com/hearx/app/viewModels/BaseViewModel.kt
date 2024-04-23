@@ -5,15 +5,15 @@ import androidx.lifecycle.ViewModel
 
 open class BaseViewModel : ViewModel() {
 
-    val navigateToClass = MutableLiveData<Class<*>>()
-    val finishActivity = MutableLiveData<Boolean>()
+    val _navigateToClass = MutableLiveData<Class<*>>()
+    val _finishActivity = MutableLiveData<Boolean>()
 
     fun navigateToClass(theClass: Class<*>) {
-        navigateToClass.postValue(theClass)
+        _navigateToClass.postValue(theClass)
     }
 
     fun finishActivity() {
-        finishActivity.postValue(true)
+        _finishActivity.postValue(true)
     }
 
 }

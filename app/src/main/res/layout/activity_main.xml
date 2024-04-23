@@ -15,15 +15,26 @@
         android:layout_height="match_parent"
         tools:context=".activities.MainActivity">
 
+        <TextView
+            android:id="@+id/txtHeading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_screen_heading"
+            style="@style/Theme.HearX.Heading"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Button
             android:id="@+id/btnViewResults"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/view_results"
-            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/Theme.HearX.PrimaryButton"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnStartTest"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:onClick="@{() -> viewmodel.viewResults()}"/>
 
         <Button
@@ -31,9 +42,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/start_test"
+            style="@style/Theme.HearX.PrimaryButton"
+            android:layout_marginBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnViewResults"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:onClick="@{() -> viewmodel.startTest()}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

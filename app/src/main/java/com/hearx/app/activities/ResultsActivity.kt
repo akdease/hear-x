@@ -22,12 +22,13 @@ class ResultsActivity : BaseActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_results)
         binding.lifecycleOwner = this
-
-        observeNavigationChanges(resultsViewModel, this, this)
-        observeLocalChanges()
+        binding.viewmodel = resultsViewModel
 
         resultsViewModel.context = this
         resultsViewModel.getResults()
+
+        observeNavigationChanges(resultsViewModel, this, this)
+        observeLocalChanges()
     }
 
     private fun observeLocalChanges() {
